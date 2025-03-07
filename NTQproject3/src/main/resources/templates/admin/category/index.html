@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  <div th:replace="admin/fragments/header :: header"></div>
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+   <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+ 
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Blank page
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+ <div class="row">
+        <div class="col-md-12">
+          <a th:href="@{/admin/category/add}" class="btn btn-success btn-lg">Thêm Mới</a>
+        </div>
+      </div>
+      <br/>
+      <!-- Default box -->
+     <div class="col-md-6">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Bordered Table</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-bordered">
+                 <!-- Duyệt qua các danh mục -->
+                            <tr th:each="category : ${list}">
+                                <td th:text="${category.id}"></td>
+                                <td th:text="${category.ten}"></td>
+                                <td th:text="${category.moTa}"></td>
+                                <td>
+                                    <a th:href="@{/admin/category/edit/{id}(id=${category.id})}" class="btn btn-warning btn-sm">Sửa</a> |
+                                    <a th:href="@{/admin/category/delete/{id}(id=${category.id})}" 
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm">Xóa</a>
+                                </td>
+                            </tr>
+                </table>
+            </div>
+            <!-- /.box-body -->
+          <div class="box-footer clearfix">
+                    <!-- Pagination -->
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        <li th:if="${currentPage > 0}">
+                            <a th:href="@{/admin/category(page=${currentPage - 1}, size=${5})}">«</a>
+                        </li>
+                        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" 
+                            th:class="${i == currentPage ? 'active' : ''}">
+                            <a th:href="@{/admin/category(page=${i}, size=${5})}" th:text="${i + 1}"></a>
+                        </li>
+                        <li th:if="${currentPage < totalPages - 1}">
+                            <a th:href="@{/admin/category(page=${currentPage + 1}, size=${5})}">»</a>
+                        </li>
+                    </ul>
+                </div>
+          </div>
+          <!-- /.box -->
+
+         </div>
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+ </div>
+<!-- ./wrapper -->
+   <div th:replace="admin/fragments/footer :: footer"></div>
+
+<!-- jQuery 3 -->
+
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery-ui.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/adminlte.min.js}"></script>
+<script th:src="@{/assetsjs/dashboard.js}"></script>
+<script th:src="@{/assets/tinymce/tinymce.min.js}"></script>
+<script th:src="@{/assets/tinymce/config.js}"></script>
+<script th:src="@{/assets/js/function.js}"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div th:replace="admin/fragments/header :: header"></div>
+  <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>Thêm Câu Hỏi</h1>
+    </section>
+
+    <section class="content">
+      <form th:action="@{/admin/questions/save}" method="post">
+        <div class="form-group">
+          <label for="noiDung">Nội Dung Câu Hỏi</label>
+          <input type="text" class="form-control" id="noiDung" name="noiDung" required />
+        </div>
+        <div class="form-group">
+          <label for="loaiCauHoi">Loại Câu Hỏi</label>
+          <select class="form-control" id="loaiCauHoi" name="loaiCauHoi">
+            <option value="TRAC_NGHIEM">Trắc Nghiệm</option>
+            <option value="DUNG_SAI">Đúng/Sai</option>
+            <option value="TU_LUAN">Tự Luận</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="diem">Điểm</label>
+          <input type="number" class="form-control" id="diem" name="diem" required />
+        </div>
+        <button type="submit" class="btn btn-success">Lưu</button>
+        <a href="/admin/questions" class="btn btn-default">Hủy</a>
+      </form>
+    </section>
+  </div>
+
+  <script th:src="@{/assets/js/jquery.min.js}"></script>
+  <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

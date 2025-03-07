@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div th:replace="admin/fragments/header :: header"></div>
+  <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>Thêm Người Dùng</h1>
+    </section>
+
+    <section class="content">
+      <form th:action="@{/admin/user/save}" method="post">
+        <div class="form-group">
+          <label for="tenDangNhap">Tên Đăng Nhập</label>
+          <input type="text" class="form-control" id="tenDangNhap" name="tenDangNhap" th:value="${user.tenDangNhap}" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" th:value="${user.email}" required />
+        </div>
+        <div class="form-group">
+          <label for="matKhau">Mật Khẩu</label>
+          <input type="password" class="form-control" id="matKhau" name="matKhau" required />
+        </div>
+        <div class="form-group">
+          <label for="vaiTro">Vai Trò</label>
+          <select class="form-control" id="vaiTro" name="vaiTro">
+            <option value="HOC_SINH" th:selected="${user.vaiTro == 'HOC_SINH'}">Học Sinh</option>
+            <option value="GIAO_VIEN" th:selected="${user.vaiTro == 'GIAO_VIEN'}">Giáo Viên</option>
+            <option value="QUAN_TRI" th:selected="${user.vaiTro == 'QUAN_TRI'}">Quản Trị</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success">Lưu</button>
+        <a href="/admin/user" class="btn btn-default">Hủy</a>
+      </form>
+    </section>
+  </div>
+</body>
+</html>

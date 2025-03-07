@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div th:replace="admin/fragments/header :: header"></div>
+  <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>Thêm Mới Đề Thi</h1>
+    </section>
+
+    <section class="content">
+      <form th:action="@{/admin/de-thi/save}" method="post">
+        <div class="box">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="tieuDe">Tiêu Đề</label>
+              <input type="text" class="form-control" id="tieuDe" name="tieuDe" required>
+            </div>
+
+            <div class="form-group">
+              <label for="moTa">Mô Tả</label>
+              <textarea class="form-control" id="moTa" name="moTa"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="danhMuc">Danh Mục</label>
+              <select class="form-control" id="danhMuc" name="danhMuc.id" required>
+                <option th:each="danhMuc : ${danhMucList}" th:value="${danhMuc.id}" th:text="${danhMuc.ten}"></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="box-footer">
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a href="/admin/de-thi" class="btn btn-default">Hủy</a>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div th:replace="admin/fragments/header :: header"></div>
+  <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>Chỉnh Sửa Câu Hỏi</h1>
+    </section>
+
+    <section class="content">
+      <form th:action="@{/admin/questions/save}" method="post">
+        <input type="hidden" th:value="${question.id}" name="id" />
+        <div class="form-group">
+          <label for="noiDung">Nội Dung Câu Hỏi</label>
+          <input type="text" class="form-control" id="noiDung" name="noiDung" th:value="${question.noiDung}" required />
+        </div>
+        <div class="form-group">
+          <label for="loaiCauHoi">Loại Câu Hỏi</label>
+          <select class="form-control" id="loaiCauHoi" name="loaiCauHoi">
+            <option th:value="'TRAC_NGHIEM'" th:text="'Trắc Nghiệm'" th:if="${question.loaiCauHoi == 'TRAC_NGHIEM'}" selected></option>
+            <option th:value="'DUNG_SAI'" th:text="'Đúng/Sai'" th:if="${question.loaiCauHoi == 'DUNG_SAI'}" selected></option>
+            <option th:value="'TU_LUAN'" th:text="'Tự Luận'" th:if="${question.loaiCauHoi == 'TU_LUAN'}" selected></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="diem">Điểm</label>
+          <input type="number" class="form-control" id="diem" name="diem" th:value="${question.diem}" required />
+        </div>
+        <button type="submit" class="btn btn-success">Lưu</button>
+        <a href="/admin/questions" class="btn btn-default">Hủy</a>
+      </form>
+    </section>
+  </div>
+
+  <script th:src="@{/assets/js/jquery.min.js}"></script>
+  <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>
