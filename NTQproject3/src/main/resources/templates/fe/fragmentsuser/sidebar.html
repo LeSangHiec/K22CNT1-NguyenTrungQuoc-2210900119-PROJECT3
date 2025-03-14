@@ -1,0 +1,105 @@
+<html  xmlns:th="http://www.thymeleaf.org">
+
+    <div id="sidebar" class="active" th:fragment="sidebar">
+
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="/"><img th:src="@{frontend/images/logo/logo3.jpg}" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item active ">
+                            <a href="/" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>                    
+                        
+
+                       <li class="sidebar-title">Câu hỏi &amp; Đề thi</li>
+					
+					<li class="sidebar-item">
+					    <a href="/questions" class="sidebar-link">
+					        <i class="bi bi-grid-fill"></i>
+					        <span>Ngân hàng câu hỏi</span>
+					    </a>
+					</li>
+					<li class="sidebar-item">
+					    <a href="/exam" class="sidebar-link">
+					        <i class="bi bi-grid-fill"></i>
+					        <span>Ngân hàng đề thi</span>
+					    </a>
+					</li>
+					   
+
+                        
+                        <li class="sidebar-title">Đăng kí &amp; Đăng nhập </li>
+
+						<!-- Nếu chưa đăng nhập -->
+						<li class="sidebar-item" th:if="${session.loggedInUser == null}">
+						    <a href="/login" class="sidebar-link">
+						        <i class="bi bi-grid-fill"></i>
+						        <span>Đăng nhập</span>
+						    </a>
+						</li>      
+						<li class="sidebar-item" th:if="${session.loggedInUser == null}">
+						    <a href="/register" class="sidebar-link">
+						        <i class="bi bi-grid-fill"></i>
+						        <span>Đăng kí</span>
+						    </a>
+						</li>
+						
+						<!-- Nếu đã đăng nhập -->
+						<li class="sidebar-item dropdown" th:if="${session.loggedInUser != null}">
+						    <a href="#" class="sidebar-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+						        <i class="bi bi-person-fill"></i>
+						        <span th:text="${session.loggedInUser.tenDangNhap}">User Name</span>
+						    </a>
+						    <ul class="dropdown-menu">
+						        <li>
+						            <a href="/profile" class="dropdown-item">Profile</a>
+						        </li>
+						        <li>
+						            <a href="/logout" class="dropdown-item">Đăng xuất</a>
+						        </li>
+						    </ul>
+						</li>
+						
+
+             
+
+                        <li class="sidebar-title">Pages</li>
+
+                       
+
+                       <li class="sidebar-item  ">
+                            <a href="index.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>      
+
+                        <li class="sidebar-title">Raise Support</li>
+                        
+
+                        <li class="sidebar-item  ">
+                            <a href="https://github.com/zuramai/mazer#donate" class='sidebar-link'>
+                                <i class="bi bi-cash"></i>
+                                <span>Donate</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>

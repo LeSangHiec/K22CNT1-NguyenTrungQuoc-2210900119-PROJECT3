@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fe/fragmentsuser/head :: head">
+    <title>Đăng Kí - Ứng Dụng Thi</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Đăng Kí Tài Khoản</h2>
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label for="tenDangNhap">Tên đăng nhập</label>
+                <input type="text" class="form-control" th:field="*{tenDangNhap}" placeholder="Nhập tên đăng nhập" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" th:field="*{email}" placeholder="Nhập email" required>
+            </div>
+            <div class="form-group">
+                <label for="matKhau">Mật khẩu</label>
+                <input type="password" class="form-control" th:field="*{matKhau}" placeholder="Nhập mật khẩu" required>
+            </div>
+            <!-- Trường chọn vai trò -->
+            <div class="form-group">
+                <label for="vaiTro">Chọn vai trò</label>
+                <select class="form-control" id="vaiTro" th:field="*{vaiTro}" required>
+                    <option value="HOC_SINH">Học Sinh</option>
+                    <option value="GIAO_VIEN">Giáo Viên</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Đăng Kí</button>
+        </form>
+        <p class="mt-3">Đã có tài khoản? <a th:href="@{/login}">Đăng nhập ngay</a></p>
+    </div>
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

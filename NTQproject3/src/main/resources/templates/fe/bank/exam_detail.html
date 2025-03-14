@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fe/fragmentsuser/head :: head">
+    <title>Xem Chi Tiết Đề Thi</title>
+</head>
+<body>
+    <div id="app">
+        <div th:replace="fe/fragmentsuser/sidebar :: sidebar"></div>
+
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-content">
+                <section class="row">
+                    <div class="col-12 col-lg-9">
+                        <!-- Chi tiết đề thi -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 th:text="${exam.tieuDe}">Tiêu đề đề thi</h4>
+                                <p th:text="${exam.moTa}">Mô tả đề thi</p>
+                            </div>
+                        </div>
+
+                        <!-- Danh sách câu hỏi -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5>Câu hỏi trong đề thi</h5>
+                            </div>
+                            <div class="card-body">
+                                <div th:each="question, iterStat : ${questions}">
+                                    <div class="question-item mb-3">
+                                        <!-- Hiển thị số câu hỏi và điểm -->
+                                        <h6 th:text="'Câu ' + ${iterStat.index + 1} + ' (' + ${question.diem} + 'đ)' + ': ' + ${question.noiDung}">
+                                            Câu hỏi
+                                        </h6>
+
+                                        <!-- Hiển thị các đáp án -->
+                                        <div class="row">
+                                            <div class="col-md-3 text-center mb-3">
+                                                <button class="btn btn-outline-primary w-100" th:text="'A. ' + ${question.dapAnA}" type="button"></button>
+                                            </div>
+                                            <div class="col-md-3 text-center mb-3">
+                                                <button class="btn btn-outline-primary w-100" th:text="'B. ' + ${question.dapAnB}" type="button"></button>
+                                            </div>
+                                            <div class="col-md-3 text-center mb-3">
+                                                <button class="btn btn-outline-primary w-100" th:text="'C. ' + ${question.dapAnC}" type="button"></button>
+                                            </div>
+                                            <div class="col-md-3 text-center mb-3">
+                                                <button class="btn btn-outline-primary w-100" th:text="'D. ' + ${question.dapAnD}" type="button"></button>
+                                            </div>
+                                        </div>
+                                        <p><strong>Đáp án đúng:</strong> <span th:text="${question.dapAnDung}">Đáp án đúng</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Thông Tin Người Tạo</h4>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-xl">
+                                        <img th:src="@{frontend/images/faces/1.jpg}" alt="Face 1">
+                                    </div>
+                                    <div class="ms-3 name">
+                                        <h5 th:text="${exam.nguoiTao.tenDangNhap}">Tên người tạo</h5>
+                                        <h6 class="text-muted mb-0" th:text="${exam.nguoiTao.email}">Email người tạo</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div th:replace="fe/fragmentsuser/footer :: footer"></div>
+        </div>
+    </div>
+
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

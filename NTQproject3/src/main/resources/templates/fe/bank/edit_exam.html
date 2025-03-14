@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fe/fragmentsuser/head :: head">
+    <title>Chỉnh sửa Đề Thi</title>
+</head>
+<body>
+    <div id="app">
+        <div th:replace="fe/fragmentsuser/sidebar :: sidebar"></div>
+
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-content">
+                <section class="row">
+                    <div class="col-12 col-lg-9">
+                        <!-- Form chỉnh sửa đề thi -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Chỉnh sửa Đề Thi</h4>
+                               <form th:action="@{/exam/{id}/edit(id=${exam.id})}" method="post">
+    <div class="form-group">
+        <label for="tieuDe">Tiêu đề</label>
+        <input type="text" class="form-control" id="tieuDe" name="tieuDe" th:value="${exam.tieuDe}">
+    </div>
+    <div class="form-group">
+        <label for="moTa">Mô tả</label>
+        <input type="text" class="form-control" id="moTa" name="moTa" th:value="${exam.moTa}">
+    </div>
+
+    <!-- Danh sách câu hỏi -->
+    <div class="form-group">
+        <label for="questions">Chọn câu hỏi</label>
+        <select class="form-control" id="questions" name="questions" multiple>
+            <option th:each="question : ${allQuestions}" th:value="${question.id}" th:text="${question.noiDung}"></option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+</form>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div th:replace="fe/fragmentsuser/footer :: footer"></div>
+        </div>
+    </div>
+
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,106 +1,107 @@
 package com.example.models;
 
 import jakarta.persistence.*;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.Collections;
-
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "ntq_nguoi_dung")
 public class NTQNguoiDung {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ntq_id")
     private Long id;
 
-
-	@Column(nullable = false, unique = true)
+    @Column(name = "ntq_ten_dang_nhap", nullable = false, unique = true)
     private String tenDangNhap;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "ntq_email", nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "ntq_mat_khau", nullable = false)
     private String matKhau;
 
-    @Enumerated(EnumType.STRING)
-    private VaiTro vaiTro;
+    // Sử dụng String cho vai trò; nếu cần, có thể chuyển sang Enum
+    @Column(name = "ntq_vai_tro", nullable = false)
+    private String vaiTro;
 
-    @Enumerated(EnumType.STRING)
-    private TrangThai trangThai;
+    @Column(name = "ntq_ngay_tao")
+    private Timestamp ngayTao;
 
-    public enum VaiTro {
-        HOC_SINH, GIAO_VIEN, QUAN_TRI
+    // Sử dụng String cho trạng thái; nếu cần, có thể chuyển sang Enum
+    @Column(name = "ntq_trang_thai")
+    private String trangThai;
+
+    // Constructor không đối số
+    public NTQNguoiDung() {
     }
 
-    public enum TrangThai {
-        HOAT_DONG, KHOA
+    // Constructor đầy đủ (nếu cần)
+    public NTQNguoiDung(Long id, String tenDangNhap, String email, String matKhau, String vaiTro, Timestamp ngayTao, String trangThai) {
+        this.id = id;
+        this.tenDangNhap = tenDangNhap;
+        this.email = email;
+        this.matKhau = matKhau;
+        this.vaiTro = vaiTro;
+        this.ngayTao = ngayTao;
+        this.trangThai = trangThai;
     }
-    
+
+    // Getters và Setters
+
     public Long getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getTenDangNhap() {
-		return tenDangNhap;
-	}
+    public String getTenDangNhap() {
+        return tenDangNhap;
+    }
 
-	public void setTenDangNhap(String tenDangNhap) {
-		this.tenDangNhap = tenDangNhap;
-	}
+    public void setTenDangNhap(String tenDangNhap) {
+        this.tenDangNhap = tenDangNhap;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getMatKhau() {
-		return matKhau;
-	}
+    public String getMatKhau() {
+        return matKhau;
+    }
 
-	public void setMatKhau(String matKhau) {
-		this.matKhau = matKhau;
-	}
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
 
-	public VaiTro getVaiTro() {
-		return vaiTro;
-	}
+    public String getVaiTro() {
+        return vaiTro;
+    }
 
-	public void setVaiTro(VaiTro vaiTro) {
-		this.vaiTro = vaiTro;
-	}
+    public void setVaiTro(String vaiTro) {
+        this.vaiTro = vaiTro;
+    }
 
-	public TrangThai getTrangThai() {
-		return trangThai;
-	}
+    public Timestamp getNgayTao() {
+        return ngayTao;
+    }
 
-	public void setTrangThai(TrangThai trangThai) {
-		this.trangThai = trangThai;
-	}
+    public void setNgayTao(Timestamp ngayTao) {
+        this.ngayTao = ngayTao;
+    }
 
-	   
-	public NTQNguoiDung() {
-		super();
-	}
+    public String getTrangThai() {
+        return trangThai;
+    }
 
-	public NTQNguoiDung(Long id, String tenDangNhap, String email, String matKhau, VaiTro vaiTro, TrangThai trangThai) {
-		super();
-		this.id = id;
-		this.tenDangNhap = tenDangNhap;
-		this.email = email;
-		this.matKhau = matKhau;
-		this.vaiTro = vaiTro;
-		this.trangThai = trangThai;
-	}
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
 }

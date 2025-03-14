@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <div th:replace="admin/fragments/header :: header"></div>
+  <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+  
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>Thêm Mới Đề Thi</h1>
+    </section>
+    <section class="content">
+      <form th:action="@{/admin/exams/add}" th:object="${exam}" method="post">
+        <div class="form-group">
+          <label>Tiêu Đề:</label>
+          <input type="text" th:field="*{tieuDe}" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label>Mô Tả:</label>
+          <textarea th:field="*{moTa}" class="form-control"></textarea>
+        </div>
+        <!-- Hiển thị danh sách câu hỏi dưới dạng checkbox -->
+        <div class="form-group">
+          <label>Chọn Câu Hỏi:</label>
+          <div th:each="question : ${questionList}">
+            <label>
+              <input type="checkbox" name="selectedQuestionIds" th:value="${question.id}" />
+              <span th:text="${question.noiDung}"></span>
+            </label><br/>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a href="/admin/exams" class="btn btn-default">Hủy</a>
+      </form>
+    </section>
+  </div>
+  <script th:src="@{/assets/js/jquery.min.js}"></script>
+  <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

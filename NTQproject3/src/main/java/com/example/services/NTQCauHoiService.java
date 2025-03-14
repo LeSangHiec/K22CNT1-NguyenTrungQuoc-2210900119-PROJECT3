@@ -9,35 +9,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
+
 
 @Service
 public class NTQCauHoiService {
 
     @Autowired
-    private NTQCauHoiRepository cauHoiRepository;
-
-    // Lấy tất cả câu hỏi với phân trang
-    public Page<NTQCauHoi> getAllQuestionsWithPagination(int page, int size) {
-        return cauHoiRepository.findAll(PageRequest.of(page, size));
+    private NTQCauHoiRepository repository;
+    
+    public Page<NTQCauHoi> getAllQuestions(Pageable pageable) {
+        return repository.findAll(pageable);
     }
-
-    // Lưu câu hỏi (Thêm hoặc sửa)
-    public NTQCauHoi saveQuestion(NTQCauHoi cauHoi) {
-        return cauHoiRepository.save(cauHoi);
-    }
-
-    // Lấy câu hỏi theo ID
+    
     public NTQCauHoi getQuestionById(Long id) {
-        return cauHoiRepository.findById(id).orElse(null);
+        return repository.findById(id).orElse(null);
     }
-
-    // Xóa câu hỏi
+    
+    public NTQCauHoi saveQuestion(NTQCauHoi question) {
+        return repository.save(question);
+    }
+    
     public void deleteQuestion(Long id) {
-        cauHoiRepository.deleteById(id);
+        repository.deleteById(id);
     }
-
-    public List<NTQCauHoi> getAllCauHoi() {
-        return cauHoiRepository.findAll();  // Giả sử bạn dùng Spring Data JPA
+    // Phương thức lấy danh sách câu hỏi dựa trên danh sách id
+    public List<NTQCauHoi> getQuestionsByIds(List<Long> ids) {
+        return repository.findAllById(ids);
     }
     
 }

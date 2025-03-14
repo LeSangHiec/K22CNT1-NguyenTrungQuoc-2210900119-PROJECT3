@@ -4,37 +4,54 @@
 <body class="hold-transition skin-blue sidebar-mini">
   <div th:replace="admin/fragments/header :: header"></div>
   <div th:replace="admin/fragments/sidebar :: sidebar"></div>
-
   <div class="content-wrapper">
     <section class="content-header">
       <h1>Chỉnh Sửa Câu Hỏi</h1>
     </section>
-
     <section class="content">
-      <form th:action="@{/admin/questions/save}" method="post">
-        <input type="hidden" th:value="${question.id}" name="id" />
+      <form th:action="@{/admin/questions/edit}" th:object="${question}" method="post">
+        <input type="hidden" th:field="*{id}" />
         <div class="form-group">
-          <label for="noiDung">Nội Dung Câu Hỏi</label>
-          <input type="text" class="form-control" id="noiDung" name="noiDung" th:value="${question.noiDung}" required />
+          <label>Nội Dung:</label>
+          <input type="text" th:field="*{noiDung}" class="form-control" required />
         </div>
         <div class="form-group">
-          <label for="loaiCauHoi">Loại Câu Hỏi</label>
-          <select class="form-control" id="loaiCauHoi" name="loaiCauHoi">
-            <option th:value="'TRAC_NGHIEM'" th:text="'Trắc Nghiệm'" th:if="${question.loaiCauHoi == 'TRAC_NGHIEM'}" selected></option>
-            <option th:value="'DUNG_SAI'" th:text="'Đúng/Sai'" th:if="${question.loaiCauHoi == 'DUNG_SAI'}" selected></option>
-            <option th:value="'TU_LUAN'" th:text="'Tự Luận'" th:if="${question.loaiCauHoi == 'TU_LUAN'}" selected></option>
+          <label>Loại Câu Hỏi:</label>
+          <select th:field="*{loaiCauHoi}" class="form-control" required>
+            <option value="TRAC_NGHIEM">Trắc Nghiệm</option>
+            <option value="DUNG_SAI">Đúng Sai</option>
+            <option value="TU_LUAN">Tự Luận</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="diem">Điểm</label>
-          <input type="number" class="form-control" id="diem" name="diem" th:value="${question.diem}" required />
+          <label>Điểm:</label>
+          <input type="number" step="0.1" th:field="*{diem}" class="form-control" required />
         </div>
-        <button type="submit" class="btn btn-success">Lưu</button>
+        <div class="form-group">
+          <label>Đáp Án A:</label>
+          <textarea th:field="*{dapAnA}" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Đáp Án B:</label>
+          <textarea th:field="*{dapAnB}" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Đáp Án C:</label>
+          <textarea th:field="*{dapAnC}" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Đáp Án D:</label>
+          <textarea th:field="*{dapAnD}" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Đáp Án Đúng:</label>
+          <input type="text" th:field="*{dapAnDung}" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
         <a href="/admin/questions" class="btn btn-default">Hủy</a>
       </form>
     </section>
   </div>
-
   <script th:src="@{/assets/js/jquery.min.js}"></script>
   <script th:src="@{/assets/js/bootstrap.min.js}"></script>
 </body>

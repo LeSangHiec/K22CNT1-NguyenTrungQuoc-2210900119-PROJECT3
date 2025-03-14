@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fe/fragmentsuser/head :: head">
+    <title>Chỉnh sửa câu hỏi</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Chỉnh sửa câu hỏi</h2>
+        <form th:action="@{/questions/edit/{id}(id=${question.id})}" th:object="${question}" method="post">
+            <div class="form-group">
+                <label for="noiDung">Nội dung câu hỏi</label>
+                <input type="text" id="noiDung" th:field="*{noiDung}" class="form-control" placeholder="Nhập nội dung câu hỏi" required>
+            </div>
+            <div class="form-group">
+                <label for="loaiCauHoi">Loại câu hỏi</label>
+                <select id="loaiCauHoi" th:field="*{loaiCauHoi}" class="form-control" required>
+                    <option value="TRAC_NGHIEM" th:selected="${question.loaiCauHoi == 'TRAC_NGHIEM'}">Trắc nghiệm</option>
+                    <option value="DUNG_SAI" th:selected="${question.loaiCauHoi == 'DUNG_SAI'}">Đúng/Sai</option>
+                    <option value="TU_LUAN" th:selected="${question.loaiCauHoi == 'TU_LUAN'}">Tự luận</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="diem">Điểm</label>
+                <input type="number" id="diem" th:field="*{diem}" class="form-control" placeholder="Nhập điểm câu hỏi" required>
+            </div>
+            <div class="form-group">
+                <label for="dapAnA">Đáp án A</label>
+                <input type="text" id="dapAnA" th:field="*{dapAnA}" class="form-control" placeholder="Nhập đáp án A" required>
+            </div>
+            <div class="form-group">
+                <label for="dapAnB">Đáp án B</label>
+                <input type="text" id="dapAnB" th:field="*{dapAnB}" class="form-control" placeholder="Nhập đáp án B" required>
+            </div>
+            <div class="form-group">
+                <label for="dapAnC">Đáp án C</label>
+                <input type="text" id="dapAnC" th:field="*{dapAnC}" class="form-control" placeholder="Nhập đáp án C" required>
+            </div>
+            <div class="form-group">
+                <label for="dapAnD">Đáp án D</label>
+                <input type="text" id="dapAnD" th:field="*{dapAnD}" class="form-control" placeholder="Nhập đáp án D" required>
+            </div>
+            <div class="form-group">
+                <label for="dapAnDung">Đáp án đúng</label>
+                <input type="text" id="dapAnDung" th:field="*{dapAnDung}" class="form-control" placeholder="Nhập đáp án đúng" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Cập nhật câu hỏi</button>
+        </form>
+    </div>
+    <footer th:replace="fe/fragmentsuser/footer :: footer"></footer>
+
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

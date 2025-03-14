@@ -8,7 +8,7 @@ public class HomeControllers {
 
     @GetMapping("/")
     public String home() {
-        return "index"; // Trả về trang index.html trong thư mục templates
+        return "fe/humanuser"; // Trả về view index.html nằm trong templates/user/
     }
     
 }

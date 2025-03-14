@@ -4,63 +4,63 @@
 <body class="hold-transition skin-blue sidebar-mini">
   <div th:replace="admin/fragments/header :: header"></div>
   <div th:replace="admin/fragments/sidebar :: sidebar"></div>
-
+  
   <div class="content-wrapper">
     <section class="content-header">
-      <h1>Danh Sách Câu Hỏi</h1>
+      <h1>Danh Sách Đề Thi</h1>
     </section>
-
     <section class="content">
-      <a href="/admin/questions/add" class="btn btn-success">Thêm Mới Câu Hỏi</a>
+      <a href="/admin/exams/add" class="btn btn-success">Thêm Mới Đề Thi</a>
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Danh Sách Câu Hỏi</h3>
+          <h3 class="box-title">Danh Sách Đề Thi</h3>
         </div>
         <div class="box-body">
           <table class="table table-bordered">
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Người tạo</th>
-                <th>Nội Dung</th>
-                <th>Loại Câu Hỏi</th>
-                <th>Điểm</th>
+                <th>Tiêu Đề</th>
+                <th>Mô Tả</th>
+                <th>Người Tạo</th>
+                <th>Ngày Tạo</th>
                 <th>Thao Tác</th>
               </tr>
             </thead>
             <tbody>
-              <tr th:each="question : ${list}">
-                <td th:text="${question.id}"></td>
-				<td th:text="${question.nguoiTao.tenDangNhap}"></td>
-                <td th:text="${question.noiDung}"></td>
-                <td th:text="${question.loaiCauHoi}"></td>
-                <td th:text="${question.diem}"></td>
+              <tr th:each="exam : ${list}">
+                <td th:text="${exam.id}"></td>
+                <td th:text="${exam.tieuDe}"></td>
+                <td th:text="${exam.moTa}"></td>
+                <td th:text="${exam.nguoiTao.tenDangNhap}"></td>
+                <td th:text="${#dates.format(exam.ngayTao, 'dd/MM/yyyy HH:mm')}"></td>
                 <td>
-                  <a th:href="@{/admin/questions/edit/{id}(id=${question.id})}" class="btn btn-warning btn-sm">Sửa</a>
-                  <a th:href="@{/admin/questions/delete/{id}(id=${question.id})}" 
+                  <a th:href="@{/admin/exams/edit/{id}(id=${exam.id})}" class="btn btn-warning btn-sm">Sửa</a>
+                  <a th:href="@{/admin/exams/delete/{id}(id=${exam.id})}" 
                      onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger btn-sm">Xóa</a>
                 </td>
               </tr>
             </tbody>
           </table>
+          
         </div>
+        
         <div class="box-footer clearfix">
           <ul class="pagination pagination-sm no-margin pull-right">
             <li th:if="${currentPage > 0}">
-              <a th:href="@{/admin/questions(page=${currentPage - 1}, size=${5})}">«</a>
+              <a th:href="@{/admin/exams(page=${currentPage - 1}, size=${5})}">«</a>
             </li>
             <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:class="${i == currentPage ? 'active' : ''}">
-              <a th:href="@{/admin/questions(page=${i}, size=${5})}" th:text="${i + 1}"></a>
+              <a th:href="@{/admin/exams(page=${i}, size=${5})}" th:text="${i + 1}"></a>
             </li>
             <li th:if="${currentPage < totalPages - 1}">
-              <a th:href="@{/admin/questions(page=${currentPage + 1}, size=${5})}">»</a>
+              <a th:href="@{/admin/exams(page=${currentPage + 1}, size=${5})}">»</a>
             </li>
           </ul>
         </div>
       </div>
     </section>
   </div>
-
   <script th:src="@{/assets/js/jquery.min.js}"></script>
   <script th:src="@{/assets/js/bootstrap.min.js}"></script>
 </body>

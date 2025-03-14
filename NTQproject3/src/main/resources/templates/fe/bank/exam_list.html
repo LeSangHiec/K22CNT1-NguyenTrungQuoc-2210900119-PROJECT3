@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fe/fragmentsuser/head :: head">
+    <title>Profile - Ứng Dụng Thi</title>
+</head>
+<body>
+                    <div id="app">
+                <div th:replace="fe/fragmentsuser/sidebar :: sidebar"></div>
+        
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+
+            <div class="page-content">
+                <section class="row">
+                    <div class="col-12 col-gl-8">
+                        <div class="row">
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon purple">
+                                                    <i class="iconly-boldShow"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Đề thi được tạo</h6>
+                                                <h6 class="font-extrabold mb-0">112.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon blue">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Số câu hỏi đã tạo</h6>
+                                                <h6 class="font-extrabold mb-0">183.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon green">
+                                                    <i class="iconly-boldAdd-User"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Following</h6>
+                                                <h6 class="font-extrabold mb-0">80.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon red">
+                                                    <i class="iconly-boldBookmark"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Saved Post</h6>
+                                                <h6 class="font-extrabold mb-0">112</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                          <div class="container mt-5">
+        <h2>Ngân hàng câu hỏi</h2>
+         <div th:if="${session.loggedInUser != null}">
+            <a href="/exam/add" class="btn btn-primary mb-3">Thêm mới câu hỏi</a>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+               <tr>
+                    <th>Tên đề thi</th>
+                    <th>Mô tả</th>
+                    <th>Người tạo</th>
+                    <th>Ngày tạo</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="exam : ${examList}">
+                    <td th:text="${exam.tieuDe}"></td>
+                    <td th:text="${exam.moTa}"></td>
+                    <td th:text="${exam.nguoiTao.tenDangNhap}">Người tạo</td>
+                    <td th:text="${exam.ngayTao}"></td>
+                    <td>
+<a th:href="@{/exam/{id}/detail(id=${exam.id})}" class="btn btn-info">Xem chi tiết</a>
+                        <a th:href="@{/exam/{id}/edit(id=${exam.id})}" class="btn btn-warning btn-sm">Sửa</a>|
+                        <a th:href="@{/exam/{id}/delete(id=${exam.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa đề thi này?')">Xóa</a>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Phân trang -->
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:if="${currentPage > 0}">
+                    <a class="page-link" th:href="@{/questions(page=${currentPage - 1}, size=${10})}">&laquo;</a>
+                </li>
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                    th:classappend="${i == currentPage} ? ' active'">
+                    <a class="page-link" th:href="@{/questions(page=${i}, size=${10})}" th:text="${i + 1}">1</a>
+                </li>
+                <li class="page-item" th:if="${currentPage < totalPages - 1}">
+                    <a class="page-link" th:href="@{/questions(page=${currentPage + 1}, size=${10})}">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+                    </div>
+                   
+                </section>
+            </div>
+
+
+        </div>
+    </div>
+
+    
+    
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
