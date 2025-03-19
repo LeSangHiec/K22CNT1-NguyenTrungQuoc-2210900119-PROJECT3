@@ -24,7 +24,7 @@ public class NTQCauHoiService {
     
     public NTQCauHoi getQuestionById(Long id) {
         return repository.findById(id).orElse(null);
-    }
+    } 
     
     public NTQCauHoi saveQuestion(NTQCauHoi question) {
         return repository.save(question);
