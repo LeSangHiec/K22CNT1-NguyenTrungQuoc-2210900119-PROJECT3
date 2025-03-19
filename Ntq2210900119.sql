@@ -38,7 +38,7 @@ CREATE TABLE `ntq_cau_hoi` (
   PRIMARY KEY (`ntq_id`),
   KEY `idx_nguoi_tao_id` (`ntq_nguoi_tao_id`),
   CONSTRAINT `fk_cau_hoi_nguoi_tao` FOREIGN KEY (`ntq_nguoi_tao_id`) REFERENCES `ntq_nguoi_dung` (`ntq_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `ntq_cau_hoi` (
 
 LOCK TABLES `ntq_cau_hoi` WRITE;
 /*!40000 ALTER TABLE `ntq_cau_hoi` DISABLE KEYS */;
-INSERT INTO `ntq_cau_hoi` VALUES (2,1,'quoc','TRAC_NGHIEM',0.6,'q1','e23','51','323','A'),(5,8,'1+1=','TRAC_NGHIEM',4,'2','3','4','5','B');
+INSERT INTO `ntq_cau_hoi` VALUES (2,1,'quoc','TRAC_NGHIEM',0.6,'q1','e23','51','323','A'),(5,8,'1+1=','TRAC_NGHIEM',4,'2','3','4','5','B'),(6,8,'Java là ngôn ngữ lập trình thuộc loại nào?','TRAC_NGHIEM',1,'Hướng đối tượng','Hướng cấu trúc','Hướng hàm','Lập trình web','Hướng đối tượng'),(7,8,'Công thức nào đúng để tính diện tích hình tròn?','TRAC_NGHIEM',1,'πr²','2πr','πr','r²','πr²'),(8,8,'Ai là tác giả của tác phẩm \"Đoạn trường tân thanh\"?','TRAC_NGHIEM',1,'Nguyễn Du','Tố Hữu','Xuân Diệu','Hồ Chí Minh','Nguyễn Du'),(9,8,'Đâu là đặc điểm chính của Java?','TRAC_NGHIEM',1,'Được biên dịch thành bytecode','Lập trình trực tiếp trên phần cứng','Có thể chạy trên tất cả các hệ điều hành mà không cần cài đặt','Không có tính đa nền tảng','Được biên dịch thành bytecode'),(10,8,' Định lý Pythagoras được áp dụng cho loại tam giác nào?','TRAC_NGHIEM',1,'Tam giác vuông','Tam giác đều','Tam giác vuông góc','Tam giác cân','Tam giác vuông'),(11,8,'Cuộc cách mạng tháng Tám diễn ra vào năm nào?','TRAC_NGHIEM',1,'1945','1939','1954','1929','1945'),(12,8,' Ai là người sáng lập ra lý thuyết tiến hóa?','TRAC_NGHIEM',1,'Charles Darwin','Albert Einstein','Isaac Newton','Galileo Galilei','Charles Darwin'),(13,8,' Tác phẩm nào được xem là biểu tượng của chủ nghĩa lãng mạn trong văn học?','TRAC_NGHIEM',1,'Đoạn trường tân thanh','Cảnh khuya','Chí Phèo','Lục Vân Tiên','Đoạn trường tân thanh'),(14,8,'Đâu là câu lệnh để khai báo một lớp trong Java?','TRAC_NGHIEM',1,'class TênLớp','class{TênLớp}','public class TênLớp','def class TênLớp','class TênLớp'),(15,8,'Mối quan hệ giữa diện tích và bán kính của hình tròn là?','TRAC_NGHIEM',1,'Diện tích tỷ lệ thuận với bình phương bán kính','Diện tích tỷ lệ thuận với bán kính','Diện tích tỷ lệ nghịch với bán kính','Diện tích không liên quan đến bán kính','Diện tích tỷ lệ thuận với bình phương bán kính');
 /*!40000 ALTER TABLE `ntq_cau_hoi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +104,7 @@ CREATE TABLE `ntq_de_thi` (
 
 LOCK TABLES `ntq_de_thi` WRITE;
 /*!40000 ALTER TABLE `ntq_de_thi` DISABLE KEYS */;
-INSERT INTO `ntq_de_thi` VALUES (1,'đề thi','quocquocquoc\r\n',NULL,1,'2025-03-09 07:06:31'),(3,'q','qư',NULL,8,'1970-01-01 01:00:00'),(4,'quocquoc','qưeqeqweqw',NULL,8,'1970-01-01 01:00:00');
+INSERT INTO `ntq_de_thi` VALUES (1,'đề thi','quocquocquoc\r\n',NULL,1,'2025-03-09 07:06:31'),(3,'q','qư',NULL,8,'1970-01-01 01:00:00'),(4,'Đề tổng hợp','Đề tổng hợp',NULL,8,'1970-01-01 01:00:00');
 /*!40000 ALTER TABLE `ntq_de_thi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +124,7 @@ CREATE TABLE `ntq_de_thi_cau_hoi` (
   KEY `idx_cau_hoi_id` (`ntq_cau_hoi_id`),
   CONSTRAINT `fk_de_thi_cau_hoi_cau_hoi` FOREIGN KEY (`ntq_cau_hoi_id`) REFERENCES `ntq_cau_hoi` (`ntq_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_de_thi_cau_hoi_de_thi` FOREIGN KEY (`ntq_de_thi_id`) REFERENCES `ntq_de_thi` (`ntq_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `ntq_de_thi_cau_hoi` (
 
 LOCK TABLES `ntq_de_thi_cau_hoi` WRITE;
 /*!40000 ALTER TABLE `ntq_de_thi_cau_hoi` DISABLE KEYS */;
-INSERT INTO `ntq_de_thi_cau_hoi` VALUES (7,1,2),(8,1,5),(11,3,2),(12,3,5),(13,4,2),(14,4,5);
+INSERT INTO `ntq_de_thi_cau_hoi` VALUES (7,1,2),(8,1,5),(11,3,2),(12,3,5),(15,4,2),(16,4,5),(17,4,6),(18,4,7),(19,4,9),(20,4,11),(21,4,12),(22,4,14);
 /*!40000 ALTER TABLE `ntq_de_thi_cau_hoi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,4 +237,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-14 22:41:36
+-- Dump completed on 2025-03-19 21:32:06
